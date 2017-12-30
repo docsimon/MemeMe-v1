@@ -15,12 +15,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let defaultTextBottonButton = "BOTTOM"
     @IBOutlet weak var imageView: UIImageView!
     let imagePicker = UIImagePickerController()
-    @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var photoLibraryButton: UIButton!
-    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var photoLibraryButton: UIBarButtonItem!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var topToolbar: UIToolbar!
+    @IBOutlet weak var bottomToolbar: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         // this button will be enabled after saving the meme
         self.shareButton.isEnabled = false
-        self.saveButton.isEnabled = false
         self.setTextFieldAttributes()
     }
     
@@ -49,6 +49,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.bottomTextField.defaultTextAttributes = memeTextAttributes
         self.topTextField.textAlignment = .center
         self.bottomTextField.textAlignment = .center
+        self.bottomTextField.autocapitalizationType = .allCharacters;
+        self.topTextField.autocapitalizationType = .allCharacters
+
     }
     
     func subscribeToKeyboardNotifications() {
@@ -95,28 +98,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Create the meme
         let memedImage = generateMemedImage()
         meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: memedImage)
-        // Set the image to the memed so that the user can check it
-        self.imageView.image = meme?.memedImage
         self.shareButton.isEnabled = true
     }
     
     func setButtons(hidden: Bool){
-        self.navigationController?.isToolbarHidden = hidden
-        self.cameraButton.isHidden = hidden
-        self.photoLibraryButton.isHidden = hidden
-        self.shareButton.isHidden = hidden
-        self.saveButton.isHidden = hidden
+        self.topToolbar.isHidden = hidden
+        self.bottomToolbar.isHidden = hidden
     }
     
-    func resetTextToDefault(){
+    func cancel(){
         self.topTextField.text = defaultTextTopButton
         self.bottomTextField.text = defaultTextBottonButton
-        self.saveButton.isEnabled = false
         self.shareButton.isEnabled = false
+        self.imageView.image = nil
     }
     
     @IBAction func shareMeme(_ sender: Any) {
-        //let image = UIImage()
+        save()
         guard let image = meme?.memedImage else {
             return
         }
@@ -132,17 +130,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func pickImage(_ sender: Any) {
-        resetTextToDefault()
-        if (sender as! UIButton).tag == 0 {
+        cancel()
+        if (sender as! UIBarButtonItem).tag == 0 {
             self.imagePicker.sourceType = .photoLibrary
         }else {
             self.imagePicker.sourceType = .camera
         }
         present(self.imagePicker, animated: true, completion: nil)
     }
-    @IBAction func saveButton(_ sender: Any) {
-        save()
+    @IBAction func cancelButton(_ sender: Any) {
+        cancel()
     }
+    
 }
 
 // Protocol implementation
@@ -150,8 +149,12 @@ extension ViewController {
     
     // Picker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        self.imageView.image = chosenImage
+        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.imageView.image = chosenImage
+        }
+        else {
+            showAlert(title: "Error", msg: "Problem using this picture")
+        }
         dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -174,8 +177,8 @@ extension ViewController {
         if (textField.text?.isEmpty)!{
             textField.text = (textField.tag == 0 ? defaultTextTopButton : defaultTextBottonButton)
         }
-        if (self.bottomTextField.text != defaultTextBottonButton && self.topTextField.text != defaultTextTopButton){
-            self.saveButton.isEnabled = true
+        if (self.bottomTextField.text != defaultTextBottonButton && self.topTextField.text != defaultTextTopButton && imageView.image != nil){
+            self.shareButton.isEnabled = true
         }
     }
 }
