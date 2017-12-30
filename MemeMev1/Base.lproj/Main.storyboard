@@ -47,15 +47,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zH6-9t-Xqf">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mgw-Bv-khe">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mgw-Bv-khe">
                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Share"/>
                                         <connections>
                                             <action selector="shareMeme:" destination="BYZ-38-t0r" eventType="touchUpInside" id="84K-bF-s8z"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shy-Kd-ByG">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shy-Kd-ByG">
                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b7S-1O-6Qo"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -99,6 +105,8 @@
                         <outlet property="bottomTextField" destination="Z5u-tU-rdJ" id="gW0-Qe-gvy"/>
                         <outlet property="cameraButton" destination="2C0-ef-Cr7" id="rIH-Xn-VX8"/>
                         <outlet property="imageView" destination="BO1-gz-bbi" id="vPp-4a-ZC9"/>
+                        <outlet property="photoLibraryButton" destination="uD8-85-lxD" id="MPk-gp-ScC"/>
+                        <outlet property="saveButton" destination="Shy-Kd-ByG" id="NL8-2T-U5h"/>
                         <outlet property="shareButton" destination="Mgw-Bv-khe" id="RIT-dn-5Wh"/>
                         <outlet property="topTextField" destination="R8I-Nh-wtt" id="gFP-GC-G7e"/>
                     </connections>
