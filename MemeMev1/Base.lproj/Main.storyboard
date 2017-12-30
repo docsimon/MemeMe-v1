@@ -21,18 +21,66 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BO1-gz-bbi">
                                 <rect key="frame" x="0.0" y="50" width="375" height="567"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="W5k-pT-thg">
+                                <rect key="frame" x="0.0" y="625" width="375" height="42"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uD8-85-lxD">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Photo Library">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pickImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iQd-BB-3Kl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2C0-ef-Cr7">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Camera"/>
+                                        <connections>
+                                            <action selector="pickImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aTs-yC-uqt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zH6-9t-Xqf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mgw-Bv-khe">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
+                                        <state key="normal" title="Share"/>
+                                        <connections>
+                                            <action selector="shareMeme:" destination="BYZ-38-t0r" eventType="touchUpInside" id="84K-bF-s8z"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shy-Kd-ByG">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BO1-gz-bbi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3BQ-3N-JS3"/>
+                            <constraint firstItem="zH6-9t-Xqf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="52U-jl-tYC"/>
                             <constraint firstItem="BO1-gz-bbi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="7Pf-bV-t6D"/>
+                            <constraint firstItem="W5k-pT-thg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DTd-4k-nCs"/>
+                            <constraint firstItem="zH6-9t-Xqf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FUL-Mu-66b"/>
+                            <constraint firstItem="W5k-pT-thg" firstAttribute="top" secondItem="BO1-gz-bbi" secondAttribute="bottom" constant="8" symbolic="YES" id="RJq-lT-ugM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="W5k-pT-thg" secondAttribute="trailing" id="Tqj-hr-YUL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="W5k-pT-thg" secondAttribute="bottom" id="YaN-41-Bsg"/>
                             <constraint firstAttribute="trailing" secondItem="BO1-gz-bbi" secondAttribute="trailing" id="do5-39-E3m"/>
                             <constraint firstItem="BO1-gz-bbi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="moV-TO-NPY"/>
+                            <constraint firstItem="BO1-gz-bbi" firstAttribute="top" secondItem="zH6-9t-Xqf" secondAttribute="bottom" id="tZ8-OD-Bxk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zH6-9t-Xqf" secondAttribute="trailing" id="vZo-Ce-IrF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="cameraButton" destination="2C0-ef-Cr7" id="rIH-Xn-VX8"/>
                         <outlet property="imageView" destination="BO1-gz-bbi" id="vPp-4a-ZC9"/>
+                        <outlet property="shareButton" destination="Mgw-Bv-khe" id="RIT-dn-5Wh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
