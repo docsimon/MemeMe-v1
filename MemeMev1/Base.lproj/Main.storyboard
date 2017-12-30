@@ -59,28 +59,48 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R8I-Nh-wtt">
+                                <rect key="frame" x="0.0" y="50" width="375" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z5u-tU-rdJ">
+                                <rect key="frame" x="0.0" y="600" width="375" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BO1-gz-bbi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3BQ-3N-JS3"/>
                             <constraint firstItem="zH6-9t-Xqf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="52U-jl-tYC"/>
                             <constraint firstItem="BO1-gz-bbi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="7Pf-bV-t6D"/>
+                            <constraint firstItem="Z5u-tU-rdJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9iV-Xl-hrp"/>
                             <constraint firstItem="W5k-pT-thg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DTd-4k-nCs"/>
                             <constraint firstItem="zH6-9t-Xqf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FUL-Mu-66b"/>
                             <constraint firstItem="W5k-pT-thg" firstAttribute="top" secondItem="BO1-gz-bbi" secondAttribute="bottom" constant="8" symbolic="YES" id="RJq-lT-ugM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="W5k-pT-thg" secondAttribute="trailing" id="Tqj-hr-YUL"/>
+                            <constraint firstItem="R8I-Nh-wtt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="X6A-dJ-mni"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="W5k-pT-thg" secondAttribute="bottom" id="YaN-41-Bsg"/>
                             <constraint firstAttribute="trailing" secondItem="BO1-gz-bbi" secondAttribute="trailing" id="do5-39-E3m"/>
+                            <constraint firstItem="R8I-Nh-wtt" firstAttribute="top" secondItem="zH6-9t-Xqf" secondAttribute="bottom" id="eBp-KF-dE2"/>
                             <constraint firstItem="BO1-gz-bbi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="moV-TO-NPY"/>
+                            <constraint firstItem="Z5u-tU-rdJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pv8-1q-eRt"/>
                             <constraint firstItem="BO1-gz-bbi" firstAttribute="top" secondItem="zH6-9t-Xqf" secondAttribute="bottom" id="tZ8-OD-Bxk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zH6-9t-Xqf" secondAttribute="trailing" id="vZo-Ce-IrF"/>
+                            <constraint firstItem="W5k-pT-thg" firstAttribute="top" secondItem="Z5u-tU-rdJ" secondAttribute="bottom" constant="8" id="wCB-TH-HhU"/>
+                            <constraint firstItem="R8I-Nh-wtt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wjL-Md-ijZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bottomTextField" destination="Z5u-tU-rdJ" id="gW0-Qe-gvy"/>
                         <outlet property="cameraButton" destination="2C0-ef-Cr7" id="rIH-Xn-VX8"/>
                         <outlet property="imageView" destination="BO1-gz-bbi" id="vPp-4a-ZC9"/>
                         <outlet property="shareButton" destination="Mgw-Bv-khe" id="RIT-dn-5Wh"/>
+                        <outlet property="topTextField" destination="R8I-Nh-wtt" id="gFP-GC-G7e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
