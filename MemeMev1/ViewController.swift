@@ -28,34 +28,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // subscribe to notifications
         subscribeToKeyboardNotifications()
         // set the delegates
-        self.imagePicker.delegate = self
-        self.topTextField.delegate = self
-        self.bottomTextField.delegate = self
-        self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        imagePicker.delegate = self
+        topTextField.delegate = self
+        bottomTextField.delegate = self
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         // this button will be enabled after saving the meme
-        self.shareButton.isEnabled = false
-        self.setTextFieldAttributes()
+        shareButton.isEnabled = false
+        setTextFieldAttributes(topTextField, defaultTextTopButton)
+        setTextFieldAttributes(bottomTextField, defaultTextBottonButton)
     }
     
-    func setTextFieldAttributes(){
-        self.topTextField.text = defaultTextTopButton
-        self.bottomTextField.text = defaultTextBottonButton
+    func setTextFieldAttributes(_ textField: UITextField, _ defaultText: String){
+        textField.text = defaultText
         let memeTextAttributes:[String:Any] = [
             NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
             NSAttributedStringKey.foregroundColor.rawValue:UIColor.white,
             NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
             NSAttributedStringKey.strokeWidth.rawValue: -2.0]
-        self.topTextField.defaultTextAttributes = memeTextAttributes
-        self.bottomTextField.defaultTextAttributes = memeTextAttributes
-        self.topTextField.textAlignment = .center
-        self.bottomTextField.textAlignment = .center
-        self.bottomTextField.autocapitalizationType = .allCharacters;
-        self.topTextField.autocapitalizationType = .allCharacters
-
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.autocapitalizationType = .allCharacters;
     }
     
     func subscribeToKeyboardNotifications() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
     }
@@ -64,7 +59,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Move the view only if the bootm textfield is the one that
         // triggers the keyboard
         if self.bottomTextField.isFirstResponder{
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
@@ -140,8 +135,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func cancelButton(_ sender: Any) {
         cancel()
-    }
-    
+    }    
 }
 
 // Protocol implementation
